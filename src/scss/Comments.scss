@@ -1,0 +1,16 @@
+//Modules
+@import "config";
+
+.CommentsHead {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+
+  & svg {
+    color: $secondary-color;
+  }
+
+  & span {
+    margin-left: 10px;
+  }
+}

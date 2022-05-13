@@ -1,7 +1,13 @@
+import CssBaseline from "@mui/material/CssBaseline";
+
+import Post from "./components/Post";
+import "./App.css";
+
 function App() {
   return (
     <div className="App">
-      <h1>Getting Started</h1>
+      <CssBaseline />
+      <Post />
     </div>
   );
 }
