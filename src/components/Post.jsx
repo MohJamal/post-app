@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import APIService from "../API.services";
+import { useSelector, useDispatch } from "react-redux";
 
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
@@ -11,12 +12,13 @@ import classes from "../css/Post.module.css";
 
 const Post = () => {
   const [post, setPost] = useState({});
-  const [comments, setComments] = useState([]);
+  const comments = useSelector((state) => state.comments);
+  const dispatch = useDispatch();
 
   async function getPost() {
     try {
-      const response = await axios.get(process.env.REACT_APP_API_KEY);
-      const data = await response.data;
+      const res = await APIService.getPost();
+      const data = await res.data;
       setPost(data);
     } catch (error) {
       console.error(error);
@@ -25,11 +27,13 @@ const Post = () => {
 
   async function getComments() {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_KEY}/comments`
-      );
-      const data = await response.data;
-      setComments(data);
+      const res = await APIService.getComments();
+      const data = await res.data;
+
+      dispatch({
+        type: "setComments",
+        comments: data,
+      });
     } catch (error) {
       console.error(error);
     }
