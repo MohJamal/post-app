@@ -1,6 +1,10 @@
 //Modules
 @import "config";
 
+.CommentForm {
+  margin-bottom: 20px;
+}
+
 .CommentsHead {
   display: flex;
   align-items: center;
@@ -12,5 +16,18 @@
 
   & span {
     margin-left: 10px;
+  }
+}
+
+.CommentList {
+  height: 300px;
+  overflow-y: scroll;
+
+  .Comment {
+    margin-bottom: 20px;
+    .Avatar {
+      width: 60px;
+      height: 60px;
+    }
   }
 }

@@ -2,11 +2,11 @@ import React from "react";
 import Box from "@mui/material/Box";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 
-const CommentsHead = ({ className }) => {
+const CommentsHead = ({ classes, commentsLength }) => {
   return (
-    <Box className={className}>
+    <Box className={classes.CommentsHead}>
       <ModeCommentOutlinedIcon fontSize="large" />
-      <Box component="span">3 comments</Box>
+      <Box component="span">{commentsLength} comments</Box>
     </Box>
   );
 };

@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,EAAE,AAAC,CACD,SAAS,CAAE,IAAI,CAChB",
-    "sources": [
-        "../../src/scss/test.module.scss"
-    ],
-    "names": [],
-    "file": "test.module.min.css"
-}

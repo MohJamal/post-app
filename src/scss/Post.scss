@@ -3,6 +3,14 @@
   border: 1px solid #000;
   padding: 20px;
 
+  & h1 {
+    text-transform: capitalize;
+  }
+
+  & .PostBody {
+    margin-bottom: 20px;
+  }
+
   & p {
     & span {
       font-weight: bold;
