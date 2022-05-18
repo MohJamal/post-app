@@ -15,34 +15,33 @@ const Post = () => {
   const comments = useSelector((state) => state.comments);
   const dispatch = useDispatch();
 
-  async function getPost() {
-    try {
-      const res = await APIService.getPost();
-      const data = await res.data;
-      setPost(data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async function getComments() {
-    try {
-      const res = await APIService.getComments();
-      const data = await res.data;
-
-      dispatch({
-        type: "setComments",
-        comments: data,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   useEffect(() => {
+    async function getPost() {
+      try {
+        const res = await APIService.getPost();
+        const data = await res.data;
+        setPost(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    async function getComments() {
+      try {
+        const res = await APIService.getComments();
+        const data = await res.data;
+
+        dispatch({
+          type: "setComments",
+          comments: data,
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
     getPost();
     getComments();
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container maxWidth="md" component="main" className={classes.Post}>
