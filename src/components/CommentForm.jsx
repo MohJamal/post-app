@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -6,18 +6,19 @@ import TextField from "@mui/material/TextField";
 import APIService from "../API.services";
 
 const CommentForm = ({ classes }) => {
-  const [commentDesc, setCommentDesc] = useState("");
+  const textRef = useRef();
   const comments = useSelector((state) => state.comments);
   const dispatch = useDispatch();
 
   const addCommentHandler = async (e) => {
     e.preventDefault();
+
     const newComment = {
       postId: comments[0].postId,
       id: comments.length + 1,
       name: "Mohammedjamal",
       email: "test@test.com",
-      body: commentDesc,
+      body: textRef.current.value,
     };
 
     try {
@@ -26,9 +27,7 @@ const CommentForm = ({ classes }) => {
         payload: newComment,
       });
 
-      const res = await APIService.addComment(newComment);
-
-      console.log(res);
+      await APIService.addComment(newComment);
     } catch (err) {
       console.log(err);
     }
@@ -47,7 +46,7 @@ const CommentForm = ({ classes }) => {
         label="Add Comment"
         variant="outlined"
         fullWidth
-        onChange={(e) => setCommentDesc(e.target.value)}
+        inputRef={textRef}
       />
     </Box>
   );
